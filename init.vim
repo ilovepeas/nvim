@@ -6,6 +6,10 @@ if empty(glob($HOME.'/.config/nvim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+if empty(glob($HOME.'/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('$HOME/.config/nvim/plugged')
 Plug 'sonph/onehalf', { 'rtp': 'vim'}
 Plug 'ajmwagar/vim-deus'

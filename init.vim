@@ -35,10 +35,9 @@ let g:deus_termcolors=256
 colorscheme deus  
 let g:airline_theme='onehalfdark' 
 let g:rainbow_active=1 
-highlight Normal guibg=NONE, ctermbg=NONE 
+"highlight Normal guibg=NONE, ctermbg=NONE 
 highlight LineNr ctermbg=NONE 
 highlight VertSplit ctermbg=NONE
-
 set encoding=UTF-8
 set autochdir
 set hlsearch
@@ -78,7 +77,6 @@ set updatetime=300
 set shortmess+=c
 
 let mapleader=" "
-
 noremap <silent> J 5j
 noremap <silent> K 5k
 noremap <silent> H ^
@@ -97,12 +95,17 @@ noremap <LEADER>k <C-w>k
 noremap <LEADER>h <C-w>h
 noremap <LEADER>l <C-w>l
 noremap <LEADER>o <C-w>o
-noremap <Up> :resize +5<CR>
-noremap <Down> :resize -5<CR>
-noremap <Left> :vertical resize -5<CR>
-noremap <Right> :vertical resize +5<CR>
+noremap <silent> <Up> :resize +5<CR>
+noremap <silent> <Down> :resize -5<CR>
+noremap <silent> <Left> :vertical resize -5<CR>
+noremap <silent> <Right> :vertical resize +5<CR>
 
 inoremap <C-a> <ESC>A
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
+inoremap ' ''<Esc>i
+inoremap " ""<Esc>i
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -118,7 +121,12 @@ let g:coc_global_extensions = [
             \'coc-json', 
             \'coc-vimlsp', 
             \'coc-pyright', 
+            \'coc-eslint', 
+            \'coc-prettier', 
             \'coc-actions', 
+            \'coc-clangd', 
+            \'coc-markdown-preview-enhanced', 
+            \'coc-webview', 
             \'coc-explorer'
             \]
 
@@ -133,22 +141,17 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <CR> to confirm
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use <C-o> to active completion
 inoremap <silent><expr> <C-o> coc#refresh()
 
 nmap <silent> <space>- <Plug>(coc-diagnostic-prev)
 nmap <silent> <space>= <Plug>(coc-diagnostic-next)
-
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" Use <LEADER>h to show documentation
+nnoremap <silent> <LEADER>e :CocCommand explorer<CR>
 nnoremap <silent> <LEADER>h :call ShowDocumentation()<CR>
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')

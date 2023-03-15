@@ -1,5 +1,8 @@
 {
     "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.preferences.silentAutoupdate": true,
+    "coc.preferences.excludeImageLinksInMarkdownDocument": true,
+    "codeLens.enable": true,
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "explorer.width": 38,

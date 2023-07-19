@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'luochen1990/rainbow'
 Plug 'ryanoasis/vim-devicons'
 Plug 'gcmt/wildfire.vim'
@@ -101,11 +101,6 @@ noremap <silent> <Left> :vertical resize -5<CR>
 noremap <silent> <Right> :vertical resize +5<CR>
 
 inoremap <C-a> <ESC>A
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -117,56 +112,56 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
 
 " COC configuration
-let g:coc_global_extensions = [
-            \'coc-json', 
-            \'coc-vimlsp', 
-            \'coc-pyright', 
-            \'coc-eslint', 
-            \'coc-prettier', 
-            \'coc-actions', 
-            \'coc-clangd', 
-            \'coc-markdown-preview-enhanced', 
-            \'coc-webview', 
-            \'coc-explorer'
-            \]
+""let g:coc_global_extensions = [
+""            \'coc-json', 
+""            \'coc-vimlsp', 
+""            \'coc-pyright', 
+""            \'coc-eslint', 
+""            \'coc-prettier', 
+""            \'coc-actions', 
+""            \'coc-clangd', 
+""            \'coc-markdown-preview-enhanced', 
+""            \'coc-webview', 
+""            \'coc-explorer'
+""            \]
 
 " Use <TAB> and <S-TAB> to select
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) : 
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <C-o> coc#refresh()
-
-nmap <silent> <space>- <Plug>(coc-diagnostic-prev)
-nmap <silent> <space>= <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> <LEADER>e :CocCommand explorer<CR>
-nnoremap <silent> <LEADER>h :call ShowDocumentation()<CR>
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-autocmd CursorHold * silent call CocActionAsync('highlight')
-nmap <leader>rn <Plug>(coc-rename)
-
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>aw  <Plug>(coc-codeaction-selected)w
+""inoremap <silent><expr> <TAB>
+""      \ coc#pum#visible() ? coc#pum#next(1) : 
+""      \ CheckBackspace() ? "\<Tab>" :
+""      \ coc#refresh()
+""inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+""function! CheckBackspace() abort
+""  let col = col('.') - 1
+""  return !col || getline('.')[col - 1]  =~# '\s'
+""endfunction
+""
+""inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+""                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+""inoremap <silent><expr> <C-o> coc#refresh()
+""
+""nmap <silent> <space>- <Plug>(coc-diagnostic-prev)
+""nmap <silent> <space>= <Plug>(coc-diagnostic-next)
+""nmap <silent> gd <Plug>(coc-definition)
+""nmap <silent> gy <Plug>(coc-type-definition)
+""nmap <silent> gi <Plug>(coc-implementation)
+""nmap <silent> gr <Plug>(coc-references)
+""nnoremap <silent> <LEADER>e :CocCommand explorer<CR>
+""nnoremap <silent> <LEADER>h :call ShowDocumentation()<CR>
+""function! ShowDocumentation()
+""  if CocAction('hasProvider', 'hover')
+""    call CocActionAsync('doHover')
+""  else
+""    call feedkeys('K', 'in')
+""  endif
+""endfunction
+""
+""autocmd CursorHold * silent call CocActionAsync('highlight')
+""nmap <leader>rn <Plug>(coc-rename)
+""
+""function! s:cocActionsOpenFromSelected(type) abort
+""  execute 'CocCommand actions.open ' . a:type
+""endfunction
+""xmap <leader>a  <Plug>(coc-codeaction-selected)
+""nmap <leader>aw  <Plug>(coc-codeaction-selected)w
 
